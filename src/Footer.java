@@ -172,7 +172,6 @@ public class Footer extends JPanel {
     }
 
     public void setClip(AudioInputStream audioStream){
-        System.out.println("clip test");
         try {
             clip = AudioSystem.getClip();
             clip.open(audioStream);
