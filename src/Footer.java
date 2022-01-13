@@ -58,17 +58,15 @@ public class Footer extends JPanel {
                 if(playing){
                     setAsIcon(playPausebtn, "play-button.png");
                     playing = false;
+
                     clip.stop();
                 }
                 else if(clip!=null){
                     setAsIcon(playPausebtn,"Pause-Button.png");
-                    playing =true;setAsIcon(playPausebtn,"Pause-Button.png");
                     playing =true;
 
                     clip.start();
                     clip.loop(100);
-
-
                 }
 
 
@@ -107,6 +105,7 @@ public class Footer extends JPanel {
             public void stateChanged(ChangeEvent e){
                 JSlider source = (JSlider)e.getSource();
                 if (!source.getValueIsAdjusting()) {
+                    
                     int volume = source.getValue();
                     volume = volume<-34?-80:volume;
                     volCtrl.setValue(volume);
@@ -119,26 +118,29 @@ public class Footer extends JPanel {
 
         volumeBtn = new JLabel();
         volumeBtn.setSize(30,30);
+        setAsIcon(volumeBtn, "volume.png");
         volumeBtn.addMouseListener(new MouseInputAdapter() {
             public void mouseClicked(MouseEvent me){
                 if(muted){
+
                     volCtrl.setValue(prevVolume>-34?prevVolume:-80);
                     volumeSlider.setValue(prevVolume);
                     setAsIcon(volumeBtn, "volume.png");
-                    muted=false;
+
                 }
                 else{
+
                     volCtrl.setValue(-80);
                     prevVolume = volumeSlider.getValue();
                     volumeSlider.setValue(-35);
                     setAsIcon(volumeBtn, "mute.png");
-                    muted = true;
+
 
                 }
+                muted = !muted;
 
             }
         });
-        setAsIcon(volumeBtn, "volume.png");
         
 
 
